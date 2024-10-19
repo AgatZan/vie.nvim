@@ -9,7 +9,7 @@ Not even close. Just `copy` and `paste` all you find usefull.
 ## TOC
 
 - Array:
-    - `map` — iterate through array
+    - [`map`](lua/vie/array.lua#L2C1-L5C4) — iterate through array
     - `reverse` — reverse array
     - `contain` — array contain element
     - `flat` — full flatten array
