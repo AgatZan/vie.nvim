@@ -1,11 +1,11 @@
 ---@diagnostic disable
 ::split::
-local text = "abs"
-local split = "b"
-
+--- split text by separator
+---@param text string
+---@param split string
+---@example: text = "abs", split = "b"
 local splitted = {}
 local last = 1
-
 local pos = text:find(split, 1, true)
 while pos do
 	table.insert(splitted, text:sub(last, pos - 1))
@@ -17,10 +17,11 @@ table.insert(splitted, text:sub(last))
 --{'a', 'b'}
 
 ::replace::
-local replacer = "vie"
-local s = "What do you love? ___. Maybe something else? NO ___ ok"
-local ind = "___"
-
+--- replace substring in text
+---@param replacer string
+---@param s string look up
+---@param ind string find
+---@example: replacer = "vie", s = "What do you love? ___. Maybe something else? NO ___ ok", ind = "___"
 local last, pos = 1, s:find(ind, 1, true)
 local b = ""
 while pos do

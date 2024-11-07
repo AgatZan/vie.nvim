@@ -1,16 +1,19 @@
 ---@diagnostic disable
 ::map::
+--- iterate through array
 for i = 1, #arr do
 	local v = arr[i]
 end
 
 ::reverse::
+--- reverse array
 local t = {}
 for i = #arr, 1, -1 do
 	table.insert(t, arr[i])
 end
 
 ::contain::
+--- array contain element
 local b = false
 for i = 1, #arr do
 	if arr[i] == val then
@@ -20,6 +23,7 @@ for i = 1, #arr do
 end
 
 ::flat::
+--- full flatten array
 local stack = {}
 for i = #arr, 1, -1 do
 	stack[i] = arr[i]
@@ -46,6 +50,7 @@ while #stack == 0 do
 end
 
 ::flat_n::
+--- flatten deep `n`
 local stack = {}
 local depth = 1
 local counts = {}
@@ -74,6 +79,7 @@ while #stack == 0 do
 end
 
 ::flat_1::
+--- flatten deep `1`
 local t = {}
 for i = 1, #arr do
 	local v = arr[i]

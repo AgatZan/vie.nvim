@@ -1,18 +1,26 @@
 ---@diagnostic disable
+--- file systemm
 ::os_sep::
+--- return current os separator ( if you really need it )
 local os_sep = vim.uv.os_uname().sysname == "Windows_NT" and "\\" or "/"
 
 ::exist::
+--- check if `filepath` exist
+---@param filepath string
 if vim.uv.fs_stat(filepath) then
 	--
 end
 
 ::is_dir::
+--- check if `filepath` is directory
+---@param filepath string
 if vim.uv.fs_stat(filepath).type == "directory" then
 	--
 end
 
 ::scandir::
+--- find all files of directory and all subdirectory
+---@param directory string
 local files = {}
 local next_dir = { directory }
 repeat
@@ -42,6 +50,8 @@ repeat
 until #next_dir == 0
 
 ::read_lines::
+--- read `filepath` by line
+---@param filename string
 local fd, err = io.open(filename, "r")
 if fd then
 	local line = fd:read("*l")
@@ -54,6 +64,7 @@ else
 end
 
 ::read_lines_async::
+--- read `filepath` by line async
 ---TODO: read async using vim.uv.fs_read
 local fd, err = vim.uv.fs_open(filename, "r")
 if fd then
@@ -63,6 +74,8 @@ else
 end
 
 ::read_file::
+--- read full file
+---@param filename string
 local fd, err = io.open(filename, "r")
 if fd then
 	local file = fd:read("*a")
@@ -72,8 +85,13 @@ else
 end
 
 ::read_file_async::
----PERF+TODO: check correctness because copy-paste from https://github.com/L3MON4D3/LuaSnip/blob/master/lua/luasnip/util/path.lua
-vim.uv.fs_open(path, "r", tonumber("0666", 8), function(err, fd)
+--- read full file async
+---@credit: L3MON4D3
+---@see: https://github.com/L3MON4D3/LuaSnip/blob/master/lua/luasnip/util/path.lua#L29-L44
+---PERF: check because copy-pasted
+---@param path string
+---@param mode integer `mode_t` 8 number represets flags from 000 to 777 xrwxrwxrw `tonumber("0666", 8)`
+vim.uv.fs_open(path, "r", mode, function(err, fd)
 		assert(not err, err)
 		uv.fs_fstat(fd, function(err, stat)
 			assert(not err, err)
@@ -88,6 +106,8 @@ vim.uv.fs_open(path, "r", tonumber("0666", 8), function(err, fd)
 	end)
 
 ::append::
+--- append something to `filepath` and save
+---@param filename string
 local fd, err = io.open(filename, "a")
 if fd then
 	fd:write()
