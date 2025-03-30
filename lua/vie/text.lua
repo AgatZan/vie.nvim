@@ -3,18 +3,19 @@
 --- split text by separator
 ---@param text string
 ---@param split string
----@example: text = "abs", split = "b"
+---@example: local text, split = "abs", "b"
 local splitted = {}
 local last = 1
 local pos = text:find(split, 1, true)
 while pos do
 	table.insert(splitted, text:sub(last, pos - 1))
-	last = pos + #replace
-	pos = a:find(split, last, true)
+	last = pos + #split
+	pos = text:find(split, last, true)
 end
 -- {'a'}
 table.insert(splitted, text:sub(last))
---{'a', 'b'}
+--{'a', 's'}
+
 
 ::replace::
 --- replace substring in text
