@@ -3,7 +3,7 @@
 ::get_selection::
 --- get visual selected text
 vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = vim.api.nvim_get_mode().mode })
----NOTICE: at `nvim_create_user_command` `mode` always "n" so use this.
+---NOTICE: at `nvim_create_user_command` `mode` always "n" so use second way.
 ---NOTICE: **by the way** calling user_command by keymap determine `mode' correctly
 vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("'>"), { type = "v" })
 
