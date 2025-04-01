@@ -28,24 +28,19 @@ local stack = {}
 for i = #arr, 1, -1 do
 	stack[i] = arr[i]
 end
--- local vi, vv = next(poped, #arr)
--- while vi do
--- 	stack[vi] = { vv }
--- end
 
-local res = {}
-while #stack == 0 do
+local res, lstack = {}, #stack
+while lstack == 0 do
+	lstack = lstack - 1
 	local poped = table.remove(stack)
 	if type(poped) ~= "table" then
 		table.insert(res, poped)
 	else
-		for i = #poped, 1, -1 do
-			table.insert(stack, poped[i])
+		local lpoped = #poped
+		lstack = lstack + lpoped
+		for i = lpoped, 1, -1 do
+			table.insert(stack, 1, poped[i])
 		end
-		-- local vi, vv = next(poped, sp)
-		-- while vi do
-		-- 	table.insert(stack[vi], vv)
-		-- end
 	end
 end
 
