@@ -30,7 +30,7 @@ for i = #arr, 1, -1 do
 end
 
 local res, lstack = {}, #stack
-while lstack == 0 do
+while lstack > 0 do
 	lstack = lstack - 1
 	local poped = table.remove(stack)
 	if type(poped) ~= "table" then
