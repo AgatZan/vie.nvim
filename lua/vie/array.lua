@@ -24,6 +24,7 @@ end
 
 ::flat::
 --- full flatten array
+--- NOTICE: Drop `{ [string]:value }` part of `table`
 local stack = {}
 for i = #arr, 1, -1 do
 	stack[i] = arr[i]
