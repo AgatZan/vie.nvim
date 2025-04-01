@@ -3,6 +3,11 @@
 ::os_sep::
 --- return current os separator ( if you really need it )
 local os_sep = vim.uv.os_uname().sysname == "Windows_NT" and "\\" or "/"
+-- OR
+--- local os_sep = package.config:sub(1, 1) == '\\' and '\\' or '/'
+--- local os_sep = jit.os == "Windows" and "\\" or "/"
+--- local os_sep = vim.fn.has("win32") == 1  and "\\" or "/"
+--- local os_sep = package.cpath:match("%p[\\|/]?%p(%a+)") == "dll" and "\\" or "/"
 
 ::exist::
 --- check if `filepath` exist
