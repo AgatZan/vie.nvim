@@ -1,4 +1,10 @@
 ---@diagnostic disable
+::have_array_part::
+--- NOTICE: `arr` without holes
+--- NOTICE: #arr == max_not_hole_idx
+--                                                        is_empty
+local have_arr_part = type(arr) == "table" and ( next( arr ) == nil or arr[1] ~= nil )
+
 ::map::
 --- iterate through array
 for i = 1, #arr do
