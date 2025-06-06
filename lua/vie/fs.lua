@@ -2,10 +2,10 @@
 --- file systemm
 ::os_sep::
 --- return current os separator ( if you really need it )
-local os_sep = vim.uv.os_uname().sysname == "Windows_NT" and "\\" or "/"
+local os_sep = package.config:sub(1, 1) --- https://www.lua.org/manual/5.3/manual.html#pdf-package.config:~:text=The%20first%20line%20is%20the%20directory%20separator%20string.%20Default%20is%20%27%5C%27%20for%20Windows%20and%20%27/%27%20for%20all%20other%20systems.
 -- OR
---- local os_sep = package.config:sub(1, 1) --- https://www.lua.org/manual/5.3/manual.html#pdf-package.config:~:text=The%20first%20line%20is%20the%20directory%20separator%20string.%20Default%20is%20%27%5C%27%20for%20Windows%20and%20%27/%27%20for%20all%20other%20systems.
 --- local os_sep = jit.os == "Windows" and "\\" or "/"
+--- local os_sep = vim.uv.os_uname().sysname == "Windows_NT" and "\\" or "/"
 --- local os_sep = vim.fn.has("win32") == 1  and "\\" or "/"
 --- local os_sep = package.cpath:match("%p[\\|/]?%p(%a+)") == "dll" and "\\" or "/"
 
